@@ -3,3 +3,12 @@ server:
 spring:
   liquibase:
     change-log: classpath:/db/changelog/base-db-changelog.xml
+  profiles:
+    active: postgres
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+

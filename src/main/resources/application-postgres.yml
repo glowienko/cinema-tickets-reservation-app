@@ -1,13 +1,12 @@
 spring:
   jpa:
-    database: cinema
     show-sql: true
     hibernate:
       ddl-auto: update
     generate-ddl: true
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/mydb
+    url: jdbc:postgresql://localhost:5432/cinema
     username: postgres
     password: mypass
     driverClassName: org.postgresql.Driver
