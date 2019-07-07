@@ -1,10 +1,9 @@
-package pl.cinema.server.screening.query;
+package pl.cinema.server.screening;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Immutable;
 import org.springframework.boot.convert.DurationUnit;
 
 import javax.persistence.Entity;
@@ -18,7 +17,6 @@ import java.time.temporal.ChronoUnit;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Immutable
 @Table(name = "movies")
 class Movie {
     @Id

@@ -1,11 +1,13 @@
 package pl.cinema.server.screening.query;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface ScreeningJpaRepository extends JpaRepository<Screening, Long> {
+interface ScreeningJpaRepository extends JpaRepository<ScreeningQuery, Long> {
 
-    List<Screening> findAllByStartDateTimeAfterAndEndDateTimeBefore(LocalDateTime start, LocalDateTime end);
+    List<ScreeningQuery> findAllByStartAfterAndEndBefore(LocalDateTime start, LocalDateTime end, Sort orders);
+//    List<ScreeningQuery> findAllByStartAfterAndEndBeforeOrderByMovieTitleDescStartDesc(LocalDateTime start, LocalDateTime end, Sort orders);
 }
