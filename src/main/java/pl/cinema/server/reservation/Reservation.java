@@ -3,6 +3,7 @@ package pl.cinema.server.reservation;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 import pl.cinema.server.cinema.Seat;
 import pl.cinema.server.screening.Screening;
 
@@ -28,6 +29,12 @@ class Reservation {
     @Id
     private Long id;
 
+    //todo: such fields can be moved to abstract entity and shared between all entities if needed
+    //but this may not be an issue. also @LastModifiedDate is a nice annotation for auditing, or hibernate Envers
+    @CreatedDate
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
     @OneToOne(fetch = LAZY)
     @JoinColumn(name = "screening_id")
     private Screening screening;
@@ -43,7 +50,4 @@ class Reservation {
     @ManyToOne(optional = false)
     @JoinColumn(name = "customer_id")
     private Maker maker;
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
 }

@@ -19,7 +19,6 @@ class Cinema {
 
     @Id
     private Long id;
-
     private String name;
 
     @OneToMany(fetch = LAZY, mappedBy = "cinema")

@@ -10,6 +10,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,9 +22,9 @@ class Room {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = ALL, orphanRemoval = true)
     private List<Seat> seats;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Cinema cinema;
 }

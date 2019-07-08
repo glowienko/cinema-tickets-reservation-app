@@ -6,9 +6,11 @@ import pl.cinema.server.cinema.Seat;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,18 +25,15 @@ class ScreeningSeat {
     @Id
     private Long id;
 
+    @Enumerated(STRING)
+    private SeatStatus status;
+
+    @MapsId
     @OneToOne
     @JoinColumn(name = "seat_id")
     private Seat seat;
 
-    @Enumerated(STRING)
-    private SeatStatus status;
-
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "screening_id")
     private Screening screening;
-
-
-
-
 }

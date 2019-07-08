@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -26,14 +27,13 @@ public class Screening {//todo: this need to be public ?
     @Id
     @GeneratedValue
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
-
     private LocalDateTime start;
     private LocalDateTime end;
 
-    @OneToMany(mappedBy = "screening")
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    @OneToMany(mappedBy = "screening", orphanRemoval = true, fetch = LAZY)
     private List<ScreeningSeat> seats;
 }

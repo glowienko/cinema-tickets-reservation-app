@@ -19,10 +19,7 @@ class ScreeningRepository implements ScreeningRepositoryPort {
     }
 
     public Optional<ScreeningQuery> getScreeningDetails(Long id) {
-        return screeningJpaRepository.findAll()
-                .stream()
-                .filter(e -> e.getId().equals(id))
-                .findFirst(); //todo: fix this, use normal find by id
+        return screeningJpaRepository.findById(id);
     }
 
 }

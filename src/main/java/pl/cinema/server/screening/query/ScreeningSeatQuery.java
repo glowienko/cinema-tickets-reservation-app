@@ -20,7 +20,7 @@ import static javax.persistence.EnumType.STRING;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "screening_seats")
-class ScreeningSeat {
+class ScreeningSeatQuery {
 
     @Id
     private Long id;

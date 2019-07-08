@@ -16,7 +16,7 @@ public class ReservationCommand {
     //validacja na screening -> czy now złożenia zlecenia jest 15 minut przed start time
     LocalDateTime screeningStartTime;
 
-    PersonDto maker;
+    MakerDto maker;
     List<ScreeningSeatDto> selectedSeats;
 
 }

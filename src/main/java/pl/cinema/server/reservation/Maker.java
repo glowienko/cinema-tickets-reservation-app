@@ -16,4 +16,5 @@ class Maker {
     private Long id;
     private String name;
     private String surname;
+    private Long age;
 }
