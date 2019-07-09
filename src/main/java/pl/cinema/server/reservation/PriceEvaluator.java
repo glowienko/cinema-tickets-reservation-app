@@ -5,5 +5,4 @@ interface PriceEvaluator {
 
     boolean canHandle(Long customerId);
 
-
 }

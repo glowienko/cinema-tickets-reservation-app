@@ -8,6 +8,7 @@ import pl.cinema.server.customer.dto.CustomerDto;
 
 import java.math.BigDecimal;
 
+import static java.math.BigDecimal.valueOf;
 import static pl.cinema.server.reservation.TicketType.CHILD;
 
 @Component
@@ -16,9 +17,9 @@ class ChildPriceEvaluator implements PriceEvaluator {
     private final CustomerFacade customerFacade;
 
     public Price evaluatePrice(String voucherCode) {
-        double voucherDiscount = customerFacade.getVoucherDiscount(voucherCode) / 100;
+        BigDecimal voucherDiscount = valueOf(customerFacade.getVoucherDiscount(voucherCode) / 100);
 
-        return new Price(BigDecimal.valueOf(CHILD.getPrice() * voucherDiscount));
+        return new Price(valueOf(CHILD.getPrice()).multiply(voucherDiscount));
     }
 
     public boolean canHandle(Long customerId) {

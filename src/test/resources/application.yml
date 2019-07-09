@@ -1,6 +1,26 @@
 spring:
+#  profiles:
+#    active: test
   liquibase:
     enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: h2
+    properties:
+      dialect: org.hibernate.dialect.H2Dialect
+      generate-ddl: false
+      show-sql: false
+      hibernate:
+        ddl-auto: none
+    datasource:
+      url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
+      driver-class-name: org.h2.Driver
+      username:
+      password:
+    h2:
+      console:
+        enabled: false
+
 
 logging:
   level:
@@ -8,3 +28,7 @@ logging:
       springframework:
         web: debug
 
+tickes:
+  weekend_extra_cost: 4
+  weekend_start_hour: 14
+  weekend_end_hour: 23

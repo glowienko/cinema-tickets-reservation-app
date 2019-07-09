@@ -8,5 +8,5 @@ import java.time.LocalDateTime;
 @Value
 public class ReservationConfirmationDto {
     BigDecimal totalPriceToPay;
-    LocalDateTime expirationDateTime;  //should be in properties .yml
+    LocalDateTime expirationDateTime;
 }

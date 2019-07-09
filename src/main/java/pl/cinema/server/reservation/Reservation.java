@@ -8,6 +8,7 @@ import pl.cinema.server.cinema.Seat;
 import pl.cinema.server.screening.Screening;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -27,6 +28,7 @@ import static javax.persistence.FetchType.LAZY;
 class Reservation {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     //todo: such fields can be moved to abstract entity and shared between all entities if needed

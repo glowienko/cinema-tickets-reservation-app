@@ -7,6 +7,7 @@ import pl.cinema.server.customer.dto.CustomerDto;
 import pl.cinema.server.reservation.dto.ReservationCommand;
 import pl.cinema.server.reservation.dto.ReservationConfirmationDto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,13 +21,13 @@ class ReservationHandler {
         Long customerId = customerFacade.createIfNotExists(CustomerDto.builder().build()); //todo: finissh me
         String voucherCode = reservationCommand.getMaker().getVoucherCode();
 
-        Price price = evaluators.stream()
+        BigDecimal totalPrice = evaluators.stream()
                 .filter(evaluator -> evaluator.canHandle(customerId))
-                .findFirst()
                 .map(evaluator -> evaluator.evaluatePrice(voucherCode))
-                .orElseThrow(IllegalStateException::new);
+                .map(Price::getValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        return new ReservationConfirmationDto(price.getValue(), calculateBookingExpTime(reservationCommand));
+        return new ReservationConfirmationDto(totalPrice, calculateBookingExpTime(reservationCommand));
     }
 
     private LocalDateTime calculateBookingExpTime(ReservationCommand reservationCommand) {

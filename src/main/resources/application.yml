@@ -12,3 +12,8 @@ logging:
       springframework:
         web: debug
 
+
+tickes:
+  weekend_extra_cost: 4
+  weekend_start_hour: 14
+  weekend_end_hour: 23
