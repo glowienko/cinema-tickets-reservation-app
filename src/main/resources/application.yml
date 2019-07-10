@@ -3,3 +3,17 @@ server:
 spring:
   liquibase:
     change-log: classpath:/db/changelog/base-db-changelog.xml
+  profiles:
+    active: postgres
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+
+
+tickes:
+  weekend_extra_cost: 4
+  weekend_start_hour: 14
+  weekend_end_hour: 23
