@@ -1,17 +1,17 @@
-<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<!--<?xml version="1.1" encoding="UTF-8" standalone="no"?>-->
 
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+<!--<databaseChangeLog-->
+<!--        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
+<!--         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">-->
 
 
-    <!--<changeSet id="someId1" author="glowienko">-->
-        <!--<createTable tableName="examples">-->
-            <!--<column name="test_column" type="TEXT"/>-->
-        <!--</createTable>-->
+<!--    &lt;!&ndash;<changeSet id="someId1" author="glowienko">&ndash;&gt;-->
+<!--        &lt;!&ndash;<createTable tableName="examples">&ndash;&gt;-->
+<!--            &lt;!&ndash;<column name="test_column" type="TEXT"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;</createTable>&ndash;&gt;-->
 
-    <!--</changeSet>-->
+<!--    &lt;!&ndash;</changeSet>&ndash;&gt;-->
 
-</databaseChangeLog>
+<!--</databaseChangeLog>-->

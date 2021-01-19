@@ -1,5 +1,24 @@
 server:
   port: 9999
 spring:
-  liquibase:
-    change-log: classpath:/db/changelog/base-db-changelog.xml
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/cinema
+    username: postgres
+    password: mypass
+    driverClassName: org.postgresql.Driver
+
+  #  liquibase:
+#    change-log: classpath:/db/changelog/base-db-changelog.xml
+
+
+
+reservation:
+  trashhold:
+    minutes: 15
