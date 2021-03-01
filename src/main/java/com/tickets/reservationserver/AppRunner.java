@@ -1,13 +1,13 @@
-package pl.cinema.server;
+package com.tickets.reservationserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ServerApplication {
+public class AppRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServerApplication.class, args);
+        SpringApplication.run(AppRunner.class, args);
     }
 
 }

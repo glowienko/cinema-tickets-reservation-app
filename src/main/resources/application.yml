@@ -1,5 +1,8 @@
 server:
-  port: 9999
+  servlet:
+    context-path: /reservations/api
+
+
 spring:
   liquibase:
-    change-log: classpath:/db/changelog/base-db-changelog.xml
+    enabled: false #change-log: classpath:/db/changelog/base-db-changelog.xml

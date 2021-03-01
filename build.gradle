@@ -1,20 +1,14 @@
 plugins {
-    id 'org.asciidoctor.convert' version '1.5.3'
-    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'org.springframework.boot' version '2.4.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
-
-group = 'pl.cinema'
+group = 'com.tickets'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '15'
 
 configurations {
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
-    }
     compileOnly {
         extendsFrom annotationProcessor
     }
@@ -25,27 +19,40 @@ repositories {
 }
 
 ext {
-    set('snippetsDir', file("build/generated-snippets"))
+//    set('springCloudVersion', "2020.0.1")
+    set('testcontainersVersion', "1.15.2")
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.liquibase:liquibase-core'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'io.micrometer:micrometer-registry-graphite'
     runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+//    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+//    testImplementation 'org.testcontainers:rabbitmq'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+//        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 test {
-    outputs.dir snippetsDir
-}
-
-asciidoctor {
-    inputs.dir snippetsDir
-    dependsOn test
+    useJUnitPlatform()
 }
