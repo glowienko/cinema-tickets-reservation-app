@@ -8,19 +8,29 @@ group = 'com.tickets'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '15'
 
+repositories {
+    mavenCentral()
+}
+sourceSets {
+    integrationTest {
+        java.srcDir "$projectDir/src/integration/java"
+        resources.srcDir "$projectDir/src/integration/resources"
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-}
-
-repositories {
-    mavenCentral()
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
 }
 
 ext {
-//    set('springCloudVersion', "2020.0.1")
     set('testcontainersVersion', "1.15.2")
+    //    set('springCloudVersion', "2020.0.1")
 }
 
 dependencies {
@@ -37,12 +47,14 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 //    runtimeOnly 'io.micrometer:micrometer-registry-graphite'
     runtimeOnly 'org.postgresql:postgresql'
+
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    integrationTestImplementation 'org.testcontainers:junit-jupiter'
+    integrationTestImplementation 'org.testcontainers:postgresql'
 //    testImplementation 'org.springframework.amqp:spring-rabbit-test'
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
 //    testImplementation 'org.testcontainers:rabbitmq'
 }
 
@@ -53,6 +65,25 @@ dependencyManagement {
     }
 }
 
+task integrationTest(type: Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    shouldRunAfter test
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+/*
 test {
     useJUnitPlatform()
 }
+
+integrationTest {
+    useJUnitPlatform()
+}
+ */

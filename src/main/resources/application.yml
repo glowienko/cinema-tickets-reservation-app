@@ -1,8 +1,12 @@
+
+
 server:
   servlet:
     context-path: /reservations/api
 
 
 spring:
+  application:
+    name: reservationserver
   liquibase:
     enabled: false #change-log: classpath:/db/changelog/base-db-changelog.xml
